@@ -17,7 +17,7 @@ flair =[]
 <br/>
 <br/>
 <br/>
-数分でLoco上にブログバックエンドを作成しましょう。まず、`loco-cli`と`sea-orm-cli`をインストールします：
+数分でLoco上にブログアプリのバックエンドを作成しましょう。まず、`loco-cli`と`sea-orm-cli`をインストールします：
 
 <!-- <snip id="quick-installation-command" inject_from="yaml" template="sh"> -->
 ```sh
@@ -28,17 +28,17 @@ cargo install sea-orm-cli # DBが必要な場合のみ
 
 次に、新しいアプリを作成します（「SaaSアプリ」を選択）。
 
-```sh
+ ```sh
  ❯ loco new
-✔ ❯ アプリ名？ · myapp
-✔ ❯ 作成したいものは？ · SaaSアプリ（DBとユーザー認証付き）
-✔ ❯ DBプロバイダーを選択 · Sqlite
-✔ ❯ バックグラウンドワーカーのタイプを選択 · Async（プロセス内のtokio非同期タスク）
-✔ ❯ アセットサービングの設定を選択 · Client（フロントエンドサービング用にアセットを構成）
+✔ ❯ App name? · myapp
+✔ ❯ What would you like to build? · SaaS app (with DB and user auth)
+✔ ❯ Select a DB Provider · Sqlite
+✔ ❯ Select your background worker type · Async (in-process tokio async tasks)
+✔ ❯ Select an asset serving configuration · Client (configures assets for frontend serving)
 
- 🚂 Locoアプリが正常に生成されました：
+ 🚂 Loco app generated successfully in:
  myapp/
-```
+ ```
 
 すべてのデフォルトを選択すると、以下のようになります：
 
@@ -73,7 +73,7 @@ $ cargo loco start
       ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
                 https://loco.rs
 
-ポート5150でリスニング中
+listening on port 5150
 ```
 <!-- </snip> -->
 
@@ -101,10 +101,10 @@ injected: "src/controllers/mod.rs"
 injected: "src/app.rs"
 added: "tests/requests/post.rs"
 injected: "tests/requests/mod.rs"
-* `post`のマイグレーションが追加されました！ `$ cargo loco db migrate`で適用できます。
-* モデル`posts`のテストが追加されました。`cargo test`で実行します。
-* コントローラー`post`が正常に追加されました。
-* コントローラー`post`のテストが正常に追加されました。`cargo test`で実行します。
+* Migration for `post` added! You can now apply it with `$ cargo loco db migrate`.
+* A test for model `posts` was added. Run with `cargo test`.
+* Controller `post` was added successfully.
+* Tests for controller `post` was added successfully. Run `cargo test`.
 ```
 
 データベースがマイグレーションされ、モデル、エンティティ、完全なCRUDコントローラーが自動的に生成されました。
@@ -130,7 +130,7 @@ $ cargo loco start
       ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
                 https://loco.rs
 
-ポート5150でリスニング中
+listening on port 5150
 ```
 <!-- </snip> -->
 
@@ -146,8 +146,8 @@ $ cargo loco start
 
 ```sh
 $ curl -X POST -H "Content-Type: application/json" -d '{
-  "title": "あなたのタイトル",
-  "content": "あなたのコンテンツ xxx"
+  "title": "Your Title",
+  "content": "Your Content xxx"
 }' localhost:5150/posts
 ```
 
@@ -178,7 +178,7 @@ $ curl localhost:5150/posts
 $ curl --location 'localhost:5150/api/auth/register' \
      --header 'Content-Type: application/json' \
      --data-raw '{
-         "name": "Locoユーザー",
+         "name": "Loco user",
          "email": "user@loco.rs",
          "password": "12341234"
      }'
@@ -205,8 +205,8 @@ $ curl --location 'localhost:5150/api/auth/login' \
 {
     "token": "...",
     "pid": "2b20f998-b11e-4aeb-96d7-beca7671abda",
-    "name": "Locoユーザー",
-    "claims": null,
+    "name": "Loco user",
+    "claims": null
     "is_verified": false
 }
 ```
